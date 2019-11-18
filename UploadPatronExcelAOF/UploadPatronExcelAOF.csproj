@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF706A77-C113-46EF-84E2-55246E7F8770}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>UploadPatronExcelAOF</RootNamespace>
+    <AssemblyName>UploadPatronExcelAOF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>library-logo-aof.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=4.5.3.2, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.2\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.3.1\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Aleph.cs" />
+    <Compile Include="API\AlephUploadPatronAPI.cs" />
+    <Compile Include="ComboboxItem.cs" />
+    <Compile Include="ControlMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ControlMainForm.designer.cs">
+      <DependentUpon>ControlMainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBConnect\CheckUrl.cs" />
+    <Compile Include="DBConnect\DataDBLocal.cs" />
+    <Compile Include="DBConnect\DataOracle.cs" />
+    <Compile Include="DBConnect\DBConnecting.cs" />
+    <Compile Include="DBConnect\QueryDB.cs" />
+    <Compile Include="DBConnect\ReadWriterConfig.cs" />
+    <Compile Include="Entity\DTOPatron.cs" />
+    <Compile Include="Entity\SinhVien.cs" />
+    <Compile Include="Entity\Z00.cs" />
+    <Compile Include="Entity\Z00R.cs" />
+    <Compile Include="Entity\Z30.cs" />
+    <Compile Include="Entity\Z305.cs" />
+    <Compile Include="Entity\Z308.cs" />
+    <Compile Include="Entity\Z31.cs" />
+    <Compile Include="Entity\Z36.cs" />
+    <Compile Include="ExTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FormStartLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStartLoading.designer.cs">
+      <DependentUpon>FormStartLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UCAddPatronTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UCAddPatronTest.Designer.cs">
+      <DependentUpon>UCAddPatronTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UCConvertNamePic.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UCConvertNamePic.Designer.cs">
+      <DependentUpon>UCConvertNamePic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UCOpenBlockPatronTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UCOpenBlockPatronTest.Designer.cs">
+      <DependentUpon>UCOpenBlockPatronTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\listID.cs" />
+    <Compile Include="Loading_FS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Loading_FS.designer.cs">
+      <DependentUpon>Loading_FS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\PatronEntity.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tool\Extensions.cs" />
+    <Compile Include="Tool\FormProvider.cs" />
+    <Compile Include="Tool\HandlingExcel.cs" />
+    <Compile Include="Tool\OpenUrl.cs" />
+    <Compile Include="Tool\PropertyOrderAttribute.cs" />
+    <Compile Include="Tool\SBApiAleph.cs" />
+    <Compile Include="Tool\TCVNToUnicode.cs" />
+    <Compile Include="Tool\ToolP.cs" />
+    <Compile Include="Tool\ToolsPatron.cs" />
+    <Compile Include="Tool\Unicode.cs" />
+    <Compile Include="Z303\z303.cs" />
+    <Compile Include="Z303\z303Block.cs" />
+    <Compile Include="Z303\z304.cs" />
+    <Compile Include="Z303\z305.cs" />
+    <Compile Include="Z303\z305Block.cs" />
+    <Compile Include="Z303\z308.cs" />
+    <EmbeddedResource Include="ControlMainForm.resx">
+      <DependentUpon>ControlMainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStartLoading.resx">
+      <DependentUpon>FormStartLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UCAddPatronTest.resx">
+      <DependentUpon>UCAddPatronTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UCConvertNamePic.resx">
+      <DependentUpon>UCConvertNamePic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UCOpenBlockPatronTest.resx">
+      <DependentUpon>UCOpenBlockPatronTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loading_FS.resx">
+      <DependentUpon>Loading_FS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="log4net.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\321830.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajax-loader-blue_round.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer-service-icon-48x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eye-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login_icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login-icon50x50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mindtouch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no-image-icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reset-50x48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Simple-Loader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Spinner.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tweek-error.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\username_login_50x50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\zoom-search-2-icon - Copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loanding.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\output-onlinepngtools %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\output-onlinepngtools %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\input-onlinepngtools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\output-onlinepngtools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\library-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="library-logo-aof.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
