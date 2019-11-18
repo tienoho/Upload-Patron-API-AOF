@@ -165,6 +165,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="bin\Debug\ConfigConnect" />
+    <None Include="bin\Debug\log4net.config" />
+    <None Include="bin\Debug\UploadPatronExcelAOF.exe.config" />
     <None Include="log4net.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -250,7 +253,18 @@
     <None Include="Resources\library-logo.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\EPPlus.dll" />
+    <Content Include="bin\Debug\EPPlus.xml" />
+    <Content Include="bin\Debug\log4net.dll" />
+    <Content Include="bin\Debug\log4net.xml" />
+    <Content Include="bin\Debug\Oracle.ManagedDataAccess.dll" />
+    <Content Include="bin\Debug\UploadPatronExcelAOF.exe" />
+    <Content Include="bin\Debug\UploadPatronExcelAOF.pdb" />
     <Content Include="library-logo-aof.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\log\" />
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -86,7 +86,7 @@ namespace UploadPatronExcelAOF.GUI
                 dgvPatron.DataSource = dataExcel;
                 new ToolsPatron().CountColumnDataGridView(dgvPatron, lbCountListExcel);
                 //Thêm dữ liệu từ dataExcel vào DataDBLocal.ListPatronOrigin
-                new ToolsPatron().AddDataPatron(txtPatronId.Text, dataExcel);
+                DataDBLocal.ListPatronOrigin = new ToolsPatron().AddDataPatron(txtPatronId.Text, dataExcel);
                 dataGridView1.DataSource = DataDBLocal.ListPatronOrigin;
                 new ToolsPatron().CountColumnDataGridView(dataGridView1, lbCountListPatron);
                 // new ToolsPatron().AddDataPatron(txtPatronId.Text,dataExcel);
@@ -148,11 +148,13 @@ namespace UploadPatronExcelAOF.GUI
                 Loading_FS.ShowSplash();
                 using (StreamWriter streamWriter = new StreamWriter(directoryPath + "/Api-Patron-Log-" + tool.getDate() + ".txt"))
                 {
-                    foreach (StringBuilder item in listSb)
+                    foreach (StringBuilder item in DataDBLocal.listStringBuilder)
                     {
                         streamWriter.WriteLine(new AlephUploadPatronAPI().Url(item.ToString()));
                     }
                 }
+                //xuất ra danh sách patronid và patronbarcode để chuyển tên ảnh bạn đọc
+                ExportDanhSachTT();
                 Loading_FS.CloseSplash();
                 MessageBox.Show("Tạo người thành công!", "Thông báo!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
@@ -179,9 +181,10 @@ namespace UploadPatronExcelAOF.GUI
                 OpenUrl.RequestApi(url);
 
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Error: ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: ", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                log.Error(ex.Message);
             }
         }
 
@@ -222,29 +225,41 @@ namespace UploadPatronExcelAOF.GUI
             cbLoaiBanDoc.Items.Add(comboboxItem);
 
             comboboxItem = new ComboboxItem();
-            comboboxItem.Text = "Cao Học";
+            comboboxItem.Text = "Cao học - Nghiên cứu sinh";
             comboboxItem.Value = "02";
             cbLoaiBanDoc.Items.Add(comboboxItem);
 
             comboboxItem = new ComboboxItem();
-            comboboxItem.Text = "Cán Bộ";
+            comboboxItem.Text = "Cán bộ - Giáo viên - Nghiên cứu viên";
             comboboxItem.Value = "03";
+            cbLoaiBanDoc.Items.Add(comboboxItem);
+
+            comboboxItem = new ComboboxItem();
+            comboboxItem.Text = "Lãnh đạo - Quản lý";
+            comboboxItem.Value = "04";
+            cbLoaiBanDoc.Items.Add(comboboxItem);
+
+            comboboxItem = new ComboboxItem();
+            comboboxItem.Text = "Ngoài học viện";
+            comboboxItem.Value = "05";
             cbLoaiBanDoc.Items.Add(comboboxItem);
 
             cbLoaiBanDoc.SelectedIndex = 0;
         }
         private void ExportDanhSachTT()
         {
-            if (listPatron.Count > 0)
+            //if (listPatron.Count > 0)
+            if (DataDBLocal.sbList.Length > 0)
             {
-                sbList = new StringBuilder();
-                foreach (PatronEntity item in listPatron)
-                {
-                    sbList.Append(item.pationID);
-                    sbList.Append("\t");
-                    sbList.AppendLine(item.MaSV_O);
-                }
-                File.WriteAllText(txtBrowserSave.Text + "/DanhSachTT" + tool.getDate() + ".txt", sbList.ToString());
+                //sbList = new StringBuilder();
+                //foreach (PatronEntity item in listPatron)
+                //{
+                //    sbList.Append(item.pationID);
+                //    sbList.Append("\t");
+                //    sbList.AppendLine(item.MaSV_O);
+                //}
+                //File.WriteAllText(txtBrowserSave.Text + "/DanhSachTT" + tool.getDate() + ".txt", sbList.ToString());
+                File.WriteAllText(txtBrowserSave.Text + "/DanhSachTT" + tool.getDate() + ".txt", DataDBLocal.sbList.ToString());
             }
         }
 

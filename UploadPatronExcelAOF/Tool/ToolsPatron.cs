@@ -15,10 +15,10 @@ namespace UploadPatronExcelAOF.Tool
 {
     public class ToolsPatron
     {        
-        public void AddDataPatron(string PatronIdFirst, DataTable dataExcel)
+        public List<PatronEntity> AddDataPatron(string PatronIdFirst, DataTable dataExcel)
         {
             int num = int.Parse(PatronIdFirst);
-            DataDBLocal.ListPatronOrigin = new List<PatronEntity>();
+            List<PatronEntity> listPatronOrigin = new List<PatronEntity>();
             foreach (DataRow row in dataExcel.Rows)
             {
                 string maSinhVien = row.Field<string>(1);
@@ -43,20 +43,23 @@ namespace UploadPatronExcelAOF.Tool
                     num++;
                 }
             }
+            return listPatronOrigin;
         }
 
         //thêm dữ liệu từ DataTable Excel vào List DataDBLocal.ListExcelBarcode
-        public void AddDataListBarcode(DataTable dataExcel)
+        //danh sách barcode
+        public List<string> AddDataListBarcode(DataTable dataExcel)
         {
-            DataDBLocal.ListExcelBarcode = new List<string>();
+            List<string> listExcelBarcode = new List<string>();
             foreach (DataRow row in dataExcel.Rows)
             {
                 string maSinhVien = row.Field<string>(0);
                 if (!String.IsNullOrEmpty(maSinhVien))
                 {
-                    DataDBLocal.ListExcelBarcode.Add(maSinhVien);
+                    listExcelBarcode.Add(maSinhVien);
                 }
             }
+            return listExcelBarcode;
         }
         //Chuyển dữ liệu sang dạng xml để đưa lên API
         public void WriteXmlApi(List<PatronEntity> ListPatronNew, string block, string borStatus)

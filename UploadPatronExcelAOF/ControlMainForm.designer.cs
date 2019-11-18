@@ -318,9 +318,12 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1225, 674);
+            this.MinimumSize = new System.Drawing.Size(1225, 674);
             this.Name = "ControlMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AOF Block Upload Patron";
+            this.Text = "AOF Upload Patron";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Control_FormClosed);
             this.Load += new System.EventHandler(this.ControlMainForm_Load);
             this._pnlLeft.ResumeLayout(false);

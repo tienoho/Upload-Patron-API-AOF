@@ -75,11 +75,17 @@ namespace UploadPatronExcelAOF.GUI
             {
 
                 dataExcel = new HandlingExcel().ReadFromExcelfile(txt_taphuan.Text, "");
-                new ToolsPatron().AddDataListBarcode(dataExcel);
+                //lấy ra danh sách chỉ barcode
+                DataDBLocal.ListExcelBarcode = new ToolsPatron().AddDataListBarcode(dataExcel);
+                //xử lý dữ liệu
                 new ToolsPatron().CompreRemovePatronListNotExist();
+
                 dgvDataExcel.DataSource = DataDBLocal.ListAlreadyExists;
+                //danh sách barcode
                 dgvDataBarcode.DataSource = DataDBLocal.ListExcelBarcode.Select(x => new { MaSV = x }).ToList();
+                //danh sách patron không tồn tại
                 dgvNotExist.DataSource = DataDBLocal.ListExcelBarcodeNotExist.Select(x => new { MaSV = x }).ToList();
+
                 new ToolsPatron().CountColumnDataGridView(dgvDataExcel, lbCountListExcel);
                 new ToolsPatron().CountColumnDataGridView(dgvNotExist, lbCountHad);
                 btnPush.Enabled = true;
@@ -95,7 +101,8 @@ namespace UploadPatronExcelAOF.GUI
 
         private void BtnPush_Click(object sender, EventArgs e)
         {
-            if (listTapHuan.Count > 0)
+            //if (listTapHuan.Count > 0)
+            if (DataDBLocal.ListAlreadyExists.Count > 0)
             {
                 RequestApiUpdate();
             }
