@@ -1,0 +1,10 @@
+#DataBase
+host=catlib.vnua.edu.vn
+port=1521
+sid=aleph23
+user=aleph_dba
+password=aleph_dba
+#Aleph
+UrlAleph=http://catlib.vnua.edu.vn
+Library=library=LDC50
+UpdateFlag=update_flag=N
